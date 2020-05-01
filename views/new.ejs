@@ -1,13 +1,28 @@
 <%- include('partials/header')%>
 
-<h1>
-   Add New Blog
-</h1>
 
-<form action="/blogs" method="post" >
-    <input type="text" name="blogs[title]" placeholder="Blog Title">
-    <textarea name="blogs[body]" placeholder="Blog Body"></textarea>
-    <input type="text" name="blogs[image]" placeholder="image url">
-    <button>Add</button>
-</form>
+
+<section>
+    <div class="container text-center">
+        <h1>
+            Add New Blog
+        </h1>
+        <form action="/blogs" method="post"  class="w-50 mx-auto my-3">
+            <div class="form-group">
+                <input class="form-control" type="text" name="blogs[title]" placeholder="Blog Title">
+            </div>
+            <div class="form-group">
+                <textarea  class="form-control" name="blogs[body]" placeholder="Blog Body"></textarea>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" name="blogs[image]" placeholder="image url">            </div>
+            <div class="form-group">
+                <button class="form-control btn btn-primary">Add</button>
+            </div>
+
+
+        </form>
+
+    </div>
+</section>
 <%- include('partials/footer')%>
