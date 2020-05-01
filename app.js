@@ -56,6 +56,11 @@ app.get('/blogs',function (req,res) {
 });
 
 
+app.get("/blogs/new",function(req,res){
+    res.render('new');
+})
+
+
 app.listen("3200",function () {
     console.log("Listening Now");
 });
