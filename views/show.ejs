@@ -9,6 +9,7 @@
                 <img src="<%=blog.image%>" class="img-fluid" alt="Responsive image">
             </div>
             <p class="card-text my-3"><%=blog.body%></p>
+            <a class="btn btn-primary" href="/blogs/<%=blog._id%>/edit">Edit Blog</a>
         </div>
         <div class="card-footer text-muted">
             <%=blog.created.toDateString()%>

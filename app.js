@@ -1,5 +1,6 @@
 var express = require("express"),
     app = express(),
+    methodOverride= require("method-override"),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
     request = require("request");
@@ -7,6 +8,7 @@ var express = require("express"),
 app.set("view engine","ejs");
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(methodOverride('_method'));
 
 mongoose.connect('mongodb+srv://mohamed:mo01121823018@cluster0-e58to.mongodb.net/test?retryWrites=true&w=majority',
     {
@@ -72,6 +74,17 @@ app.get("/blogs/:id",function (req,res) {
 
 });
 
+app.get("/blogs/:id/edit",function (req,res) {
+    Blog.findById(req.params.id , function (err,foundBlog) {
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render('edit',{blog:foundBlog});
+        }
+    });
+});
+
 
 app.post('/blogs',function(req,res){
     Blog.create(req.body.blogs , function(err,addedBlog){
@@ -83,6 +96,21 @@ app.post('/blogs',function(req,res){
         }
     });
 });
+
+app.put('/blogs/:id',function (req,res) {
+    console.log(req.body.blogs);
+    Blog.findByIdAndUpdate(req.params.id,req.body.blogs,function (err,newBlog) {
+        if(err){
+            console.log(err);
+        }
+        else {
+            console.log(req.params.id);
+            res.redirect("/blogs/"+req.params.id);
+            //res.render('show',{blog:newBlog});
+        }
+    });
+});
+
 
 app.listen("3200",function () {
     console.log("Listening Now");
